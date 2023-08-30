@@ -33,7 +33,7 @@ This project is my personal website where I share information about myself, my s
 
 ## Usage
 
-Click [here](https://teddyomondi.github.io/#about) to see it in action.
+Click [here](https://kaleidoscopic-unicorn-920e67.netlify.app/) to see it in action.
 
 ## Contributing
 
