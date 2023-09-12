@@ -1,4 +1,4 @@
-# Year Progress Bar Website Documentation
+# Year Progress Bar 
 
 This documentation provides an overview of the Year Progress Bar website, its features, and how to use and customize it.
 
@@ -10,6 +10,9 @@ This documentation provides an overview of the Year Progress Bar website, its fe
   - [Customization](#customization)
 - [Contributing](#contributing)
 - [License](#license)
+
+![progress-bar](progress_bar.jpg)
+
 
 ## Introduction
 
