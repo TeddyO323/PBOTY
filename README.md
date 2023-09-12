@@ -13,6 +13,8 @@ This documentation provides an overview of the Year Progress Bar website, its fe
 
 ![progress-bar](progress_bar.jpg)
 
+### Click [Here](https://progress-bar-of-the-year.netlify.app/) to see the bar in action...
+
 
 ## Introduction
 
