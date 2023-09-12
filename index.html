@@ -1,47 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Year Progress Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
-  <div>
-    <canvas id="canvas"></canvas>
-      </div>
-  <div class="container">
-    <div id="info">
-      <span id="days_percentage"></span> of <span id="year"></span>&nbsp;has passed
-    </div>
-    <br />
-    <div class="progress0"></div>
-    <div class="progress1" id="progress"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+    <div class="firework"></div>
+       
+    <div class="container">
 
-    <!-- More Information -->
-    <h3 style="margin-top: -1em">More Information</h3>
-    <div class="more">
-      <p class="mores">
-      Total Days: <span class="spaninfo" id="days_total">0</span> /
-        <span id="maxdays" class="spaninfo">0</span><br />
-      </p>
+  <div class="progress-message" id="progress-message"></div>
+  <div class="progress-container">
+    <div class="progress-bar" id="year-progress"></div>
+        <div class="extra-info">
+            <p>Today's date: <span id="current-date"></span></p>
+            <p>Days passed: <span id="days-passed"></span></p>
+            <p>Current time: <span id="current-time"></span></p>
+        </div>
+    </div>
+</div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.github.com"><i class="fab fa-github"></i></a>
+            </div>
     
-     
-      <p class="mores">
-      Date: <span class="spaninfo" id="servertime">0</span><br />
-      </p>
-      <p class="mores">
-        Server Time 12H: <span class="spaninfo" id="servertime12H">0</span><br />
-      </p>
-      <p class="mores">
-        Server Time 24H: <span class="spaninfo" id="servertime24H">0</span><br />
-      </p>
-    </div>
-  </div>
-
-  <div id="particles-js"></div>
-<script src="app.js"></script>
-<script src="particles.min.js"></script>
-
-
+            <div class="made-by">
+                Made by Teddy Omondi
+            </div>
+        </div>
+    </footer>
+    
+    
+            <!-- Feedback form
+            <div class="feedback-form">
+                <p>Provide feedback via email:</p>
+                <form id="feedback-form">
+                    <input type="email" id="feedback-email" placeholder="Your email" required>
+                    <textarea id="feedback-message" placeholder="Your feedback" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div> -->
+    
+       
+    
+    
+    
+    <script src="script.js"></script>
 </body>
-
 </html>
