@@ -45,3 +45,26 @@ setInterval(function () {
     updateCurrentTime();
 }, 1000);
 
+// Function to update progress bar colors
+function updateProgressBarColors() {
+    // Get the selected background and container colors
+    const backgroundColor = document.getElementById("background-color").value;
+    const containerColor = document.getElementById("container-color").value;
+
+    // Update the progress container's background color
+    const progressContainer = document.querySelector(".progress-container");
+    progressContainer.style.backgroundColor = containerColor;
+
+    // Update the progress bar's background color
+    const progressBar = document.getElementById("year-progress");
+    progressBar.style.backgroundColor = backgroundColor;
+}
+
+// Call the updateProgressBarColors function initially
+updateProgressBarColors();
+
+// Set up event listeners for color pickers
+document.getElementById("background-color").addEventListener("input", updateProgressBarColors);
+document.getElementById("container-color").addEventListener("input", updateProgressBarColors); // Add container color input
+
+

@@ -37,21 +37,26 @@ body {
     text-align: left;
     padding: 10px;
     
+    
 }
 
 .progress-bar {
+    background-color: #c505ab; /* Default progress color */
+    border-color: white; /* Default background color */
     height: 100%;
-    background-color: #c505ab;
     border-radius: 0px;
     width: 334%;
+    transition: width 1s ease-in-out; /* Add transition for width property */
+
 }
 
-.extra-info .progress-message {
+.extra-info  {
     text-align: left;
     padding: 10px;
     font-family: sans-serif;
     font: 24px;
     color: black;
+    top: 100%;
     
 
 }
@@ -88,32 +93,19 @@ footer {
 
 
 
-
-.feedback-form {
-    text-align: left;
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-
-
-
-#feedback-email, #feedback-message {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-}
-
-#feedback-message {
-    height: 100px;
-}
-
-#feedback-form button[type="submit"] {
-    background-color: #007bff;
-    color: white;
+/* Styles for the feedback button in index.html */
+#feedback-button {
+    background-color: #c505ab;
+    color: #fff;
     border: none;
     padding: 10px 20px;
+    font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
+}
+
+#feedback-button:hover {
+    background-color: #343434;
 }
 
