@@ -52,4 +52,4 @@ If you'd like to contribute to the Year Progress Bar project, feel free to fork 
 
 The Year Progress Bar website is open-source and available. You are free to use, modify, and distribute the code.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/819e2bf4-983b-47f6-b63e-a95d876bf717/deploy-status)](https://app.netlify.com/sites/progress-bar-of-the-year/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3a82ab85-66a6-49e0-9832-2c8e61568df1/deploy-status)](https://app.netlify.com/sites/progress-bar-of-the-year/deploys)

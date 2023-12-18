@@ -1,74 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Year Progress Bar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <title>Year 2023 Progress</title>
 </head>
 <body>
-    <div class="firework"></div>
-    <div class="firework"></div>
-    <div class="firework"></div>
-       
-    <div class="container">
+  
+  <div id="snowflakes"></div>
 
-  <div class="progress-message" id="progress-message"></div>
-  <div class="progress-container">
-    <div class="progress-bar" id="year-progress"></div>
-        <div class="extra-info">
-            <p>Today's date: <span id="current-date"></span></p>
-            <p>Days passed: <span id="days-passed"></span></p>
-            <p>Current time: <span id="current-time"></span></p>
+  <h1 id="progress-title"></h1>
+  <div id="progress-bar-container">
+    <div id="progress-bar">
+    </div> 
+   </div>
+
+  <div id="additional-info">
+    <p>Days remaining to Christmas: <span id="days-to-christmas"></span> days</p>
+    <p>Current date: <span id="current-date"></span></p>
+    <p>Days passed: <span id="days-passed"></span>/365</p>
+    <p>Current time: <span id="current-time"></span></p>
+  <form id="color-form">
+    <label for="barColor">Progress Bar Color:</label>
+    <input type="color" id="barColor" value="#c505ab"><br>
+  
+    <label for="containerColor">Progress Bar Container Color:</label>
+    <input type="color" id="containerColor" value="#eee"><br>
+  
+    <button type="button" onclick="applyColors()">Apply Colors</button>
+  </form>
+    </div>
+
+  <footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="https://www.facebook.com/teddy.omonditunya/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/TeddyOmond87011?t=yVmQXtsHKM2e-rPp9I-jvw&s=09" target="_blank"><i class="fa-brands fa-x-twitter fa-2xs"></i></a>
+            <a href="https://github.com/TeddyO323"><i class="fab fa-github" target="_blank"></i></a>
+            <a href="https://www.linkedin.com/in/teddy-omondi-35551376" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            
+        </div>
+        <!-- <div id="santa"></div> -->
+
+
+        <div class="made-by">
+            Made by Teddy Omondi
         </div>
     </div>
-    
-</div>
-<!-- Color picker for progress bar background -->
-<label for="background-color">Progress Color:</label>
-<input type="color" id="background-color" value="#c505ab">
-<br>
+</footer>
 
-
-<label for="container-color">Container Color:</label>
-<input type="color" id="container-color" value="#343434">
-<br>
-
-    </div>
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="https://www.facebook.com/teddy.omonditunya/"><i class="fab fa-facebook"></i></a>
-                <a href="https://x.com/TeddyOmond87011?t=yVmQXtsHKM2e-rPp9I-jvw&s=09"><i class="fa-brands fa-x-twitter fa-2xs"></i></a>
-                <a href="https://github.com/TeddyO323"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/teddy-omondi-35551376"><i class="fa-brands fa-linkedin"></i></a>
-                
-            </div>
-    
-            <div class="made-by">
-                Made by Teddy Omondi
-            </div>
-        </div>
-    </footer>
-    
-    
-            <!-- Feedback form
-            <div class="feedback-form">
-                <p>Provide feedback via email:</p>
-                <form id="feedback-form">
-                    <input type="email" id="feedback-email" placeholder="Your email" required>
-                    <textarea id="feedback-message" placeholder="Your feedback" required></textarea>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </div> -->
-    
-       
-    
-    
-    
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

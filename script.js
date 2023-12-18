@@ -1,70 +1,128 @@
-function updateProgressBar() {
-    // Get the current date
-    const currentDate = new Date();
+// Get the current date in GMT+3 time zone
+const currentDate = new Date(new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Moscow' }).format(new Date()));
 
-    // Get the start and end dates of the year
-    const currentYear = currentDate.getFullYear(); // Get the current year
-    const yearStart = new Date(currentYear, 0, 1); // January is 0
-    const yearEnd = new Date(currentYear + 1, 0, 1); // Next year's January 1st
+// Get the start and end dates of the year 2023 in GMT+3 time zone
+const startDate = new Date(Date.UTC(2023, 0, 1));
+const endDate = new Date(Date.UTC(2023, 11, 31, 23, 59, 59));
 
-    // Calculate the progress percentage and round it to the nearest integer
-    const progress = Math.floor(((currentDate - yearStart) / (yearEnd - yearStart)) * 100);
+// Calculate the percentage of the year completed
+const progressPercentage = ((currentDate - startDate) / (endDate - startDate)) * 100;
 
-    // Update the progress bar width
-    const progressBar = document.getElementById("year-progress");
-    progressBar.style.width = progress + "%";
+// Ensure the progress is capped at 100%
+const cappedProgress = Math.min(progressPercentage, 100);
 
-    // Display the progress message
-    const progressMessage = document.getElementById("progress-message");
-    progressMessage.textContent = `${progress}% of ${currentYear} has passed`;
+// Update the progress bar, title, and text
+const progressBar = document.getElementById('progress-bar');
+const progressTitle = document.getElementById('progress-title');
 
-    // Display today's date
-    const currentDateElement = document.getElementById("current-date");
-    const formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
-    currentDateElement.textContent = formattedDate;
+progressTitle.textContent = `0% of 2023 has passed`; // Start with 0%
+progressBar.style.width = `0%`; // Start with 0%
 
-    // Calculate days passed
-    const daysPassedElement = document.getElementById("days-passed");
-    const daysPassed = Math.floor((currentDate - yearStart) / (24 * 60 * 60 * 1000));
-    daysPassedElement.textContent = `${daysPassed}/${365}`; // Assuming a year has 365 days
+// Animate the progress bar, title, and text
+function animateProgressBar() {
+  let width = 0;
+  const increment = 0.5; // Adjust the increment value for speed
+
+  const interval = setInterval(function () {
+    if (width >= cappedProgress) {
+      clearInterval(interval);
+    } else {
+      width += increment;
+      progressBar.style.width = `${width}%`;
+      progressTitle.textContent = `${Math.floor(width)}% of 2023 has passed!!`;
+    }
+  }, 10); // Adjust the interval duration for smoothness
 }
 
-// Function to update the current time
-function updateCurrentTime() {
-    const currentTimeElement = document.getElementById("current-time");
-    const currentTime = new Date().toLocaleTimeString();
-    currentTimeElement.textContent = currentTime;
+// Update additional information
+const daysToChristmasSpan = document.getElementById('days-to-christmas');
+const currentDateSpan = document.getElementById('current-date');
+const daysPassedSpan = document.getElementById('days-passed');
+const currentTimeSpan = document.getElementById('current-time');
+
+function updateInfo() {
+  const now = new Date();
+  const daysToChristmas = Math.ceil((new Date('2023-12-25T00:00:00Z') - now) / (1000 * 60 * 60 * 24));
+  const daysPassed = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+
+  daysToChristmasSpan.textContent = daysToChristmas;
+  currentDateSpan.textContent = now.toLocaleDateString();
+  daysPassedSpan.textContent = daysPassed;
+  currentTimeSpan.textContent = now.toLocaleTimeString();
 }
 
-// Call the updateProgressBar function initially
-updateProgressBar();
+function applyColors() {
+    const barColorInput = document.getElementById('barColor');
+    const containerColorInput = document.getElementById('containerColor');
+    const progressBar = document.getElementById('progress-bar');
+    const progressBarContainer = document.getElementById('progress-bar-container');
+  
+    const barColor = barColorInput.value;
+    const containerColor = containerColorInput.value;
+  
+    // Apply user-selected colors
+    progressBar.style.backgroundColor = barColor;
+    progressBarContainer.style.backgroundColor = containerColor;
+  }
+  
+  // Trigger applyColors when the page is loaded
+  window.addEventListener('load', applyColors);
+  
 
-// Set up an interval to update the progress and current time every second (1000 milliseconds)
-setInterval(function () {
-    updateProgressBar();
-    updateCurrentTime();
-}, 1000);
+// Trigger the animation and continuously update the time
+window.addEventListener('load', function () {
+  animateProgressBar();
+  updateInfo();
+  setInterval(updateInfo, 1000); // Update every 1000 milliseconds (1 second)
+});
 
-// Function to update progress bar colors
-function updateProgressBarColors() {
-    // Get the selected background and container colors
-    const backgroundColor = document.getElementById("background-color").value;
-    const containerColor = document.getElementById("container-color").value;
+// Array of snowflake characters
+const snowflakeCharacters = ['❄', '❅', '❆'];
 
-    // Update the progress container's background color
-    const progressContainer = document.querySelector(".progress-container");
-    progressContainer.style.backgroundColor = containerColor;
+// Function to create a snowflake and add it to the page
+function createSnowflake() {
+  const snowflake = document.createElement('div');
+  snowflake.className = 'snowflake';
 
-    // Update the progress bar's background color
-    const progressBar = document.getElementById("year-progress");
-    progressBar.style.backgroundColor = backgroundColor;
+  // Randomly select a snowflake character from the array
+  const randomIndex = Math.floor(Math.random() * snowflakeCharacters.length);
+  snowflake.innerHTML = snowflakeCharacters[randomIndex];
+
+  // Adjust the font size for the larger snowflake
+  if (snowflake.innerHTML === '❆') {
+    snowflake.style.fontSize = '40px'; // Set the desired font size
+    
+  }
+    // Adjust the font size for the larger snowflake
+    if (snowflake.innerHTML === '❅') {
+        snowflake.style.fontSize = '30px'; // Set the desired font size
+      }
+    
+
+  // Randomize starting position and animation duration
+  const startPosition = Math.random() * window.innerWidth;
+  const animationDuration = 5 + Math.random() * 10; // Between 5 and 15 seconds
+
+  snowflake.style.left = startPosition + 'px';
+  snowflake.style.animation = `fall ${animationDuration}s linear infinite`;
+
+  // Append the snowflake to the snowflakes container
+  document.getElementById('snowflakes').appendChild(snowflake);
 }
 
-// Call the updateProgressBarColors function initially
-updateProgressBarColors();
-
-// Set up event listeners for color pickers
-document.getElementById("background-color").addEventListener("input", updateProgressBarColors);
-document.getElementById("container-color").addEventListener("input", updateProgressBarColors); // Add container color input
-
+// Create multiple snowflakes
+for (let i = 0; i < 30; i++) {
+  createSnowflake();
+}
+// Function to update the timezone based on user selection
+function updateTimezone() {
+    const timezoneSelect = document.getElementById('timezone');
+    const selectedTimezone = timezoneSelect.value;
+  
+    // Update the timezone in the additional info section
+    const timezoneInfo = document.getElementById('timezone-info');
+    timezoneInfo.textContent = `Your timezone: ${selectedTimezone}`;
+  
+    // You can also update other time-related information here if needed
+  }
 
