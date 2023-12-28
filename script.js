@@ -1,128 +1,177 @@
-// Get the current date in GMT+3 time zone
-const currentDate = new Date(new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Moscow' }).format(new Date()));
+document.addEventListener('DOMContentLoaded', function() {
+  updateProgressBar(); // Initial update
 
-// Get the start and end dates of the year 2023 in GMT+3 time zone
-const startDate = new Date(Date.UTC(2023, 0, 1));
-const endDate = new Date(Date.UTC(2023, 11, 31, 23, 59, 59));
+  // Set interval to update the progress every 1 minute (adjust as needed)
+  setInterval(updateProgressBar, 60000); // 60000 milliseconds = 1 minute
 
-// Calculate the percentage of the year completed
-const progressPercentage = ((currentDate - startDate) / (endDate - startDate)) * 100;
-
-// Ensure the progress is capped at 100%
-const cappedProgress = Math.min(progressPercentage, 100);
-
-// Update the progress bar, title, and text
-const progressBar = document.getElementById('progress-bar');
-const progressTitle = document.getElementById('progress-title');
-
-progressTitle.textContent = `0% of 2023 has passed`; // Start with 0%
-progressBar.style.width = `0%`; // Start with 0%
-
-// Animate the progress bar, title, and text
-function animateProgressBar() {
-  let width = 0;
-  const increment = 0.5; // Adjust the increment value for speed
-
-  const interval = setInterval(function () {
-    if (width >= cappedProgress) {
-      clearInterval(interval);
-    } else {
-      width += increment;
-      progressBar.style.width = `${width}%`;
-      progressTitle.textContent = `${Math.floor(width)}% of 2023 has passed!!`;
-    }
-  }, 10); // Adjust the interval duration for smoothness
-}
-
-// Update additional information
-const daysToChristmasSpan = document.getElementById('days-to-christmas');
-const currentDateSpan = document.getElementById('current-date');
-const daysPassedSpan = document.getElementById('days-passed');
-const currentTimeSpan = document.getElementById('current-time');
-
-function updateInfo() {
-  const now = new Date();
-  const daysToChristmas = Math.ceil((new Date('2023-12-25T00:00:00Z') - now) / (1000 * 60 * 60 * 24));
-  const daysPassed = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-
-  daysToChristmasSpan.textContent = daysToChristmas;
-  currentDateSpan.textContent = now.toLocaleDateString();
-  daysPassedSpan.textContent = daysPassed;
-  currentTimeSpan.textContent = now.toLocaleTimeString();
-}
-
-function applyColors() {
-    const barColorInput = document.getElementById('barColor');
-    const containerColorInput = document.getElementById('containerColor');
-    const progressBar = document.getElementById('progress-bar');
-    const progressBarContainer = document.getElementById('progress-bar-container');
-  
-    const barColor = barColorInput.value;
-    const containerColor = containerColorInput.value;
-  
-    // Apply user-selected colors
-    progressBar.style.backgroundColor = barColor;
-    progressBarContainer.style.backgroundColor = containerColor;
-  }
-  
-  // Trigger applyColors when the page is loaded
-  window.addEventListener('load', applyColors);
-  
-
-// Trigger the animation and continuously update the time
-window.addEventListener('load', function () {
-  animateProgressBar();
-  updateInfo();
-  setInterval(updateInfo, 1000); // Update every 1000 milliseconds (1 second)
+  // Set interval to update the current time every second
+  setInterval(updateCurrentTime, 1000); // 1000 milliseconds = 1 second
 });
 
-// Array of snowflake characters
-const snowflakeCharacters = ['❄', '❅', '❆'];
+function updateProgressBar() {
+  var currentDate = new Date();
 
-// Function to create a snowflake and add it to the page
-function createSnowflake() {
-  const snowflake = document.createElement('div');
-  snowflake.className = 'snowflake';
+  // Set the start date to the beginning of the current year
+  var startDate = new Date(currentDate.getFullYear(), 0, 1);
 
-  // Randomly select a snowflake character from the array
-  const randomIndex = Math.floor(Math.random() * snowflakeCharacters.length);
-  snowflake.innerHTML = snowflakeCharacters[randomIndex];
+  // Set the end date to the end of 2023
+  var endDate = new Date(2023, 11, 31, 23, 59, 59);
 
-  // Adjust the font size for the larger snowflake
-  if (snowflake.innerHTML === '❆') {
-    snowflake.style.fontSize = '40px'; // Set the desired font size
-    
-  }
-    // Adjust the font size for the larger snowflake
-    if (snowflake.innerHTML === '❅') {
-        snowflake.style.fontSize = '30px'; // Set the desired font size
-      }
-    
+  // Calculate the percentage of the year that has passed
+  var progressPercentage = Math.floor(((currentDate - startDate) / (endDate - startDate)) * 100);
 
-  // Randomize starting position and animation duration
-  const startPosition = Math.random() * window.innerWidth;
-  const animationDuration = 5 + Math.random() * 10; // Between 5 and 15 seconds
+  // Update the progress message and progress bar width
+  var progressMessage = document.getElementById('progress-message');
+  var progressBar = document.getElementById('progress-bar');
+  var extraInfo = document.getElementById('extra-info');
 
-  snowflake.style.left = startPosition + 'px';
-  snowflake.style.animation = `fall ${animationDuration}s linear infinite`;
+  progressMessage.innerHTML = `
+      ${progressPercentage}% of ${currentDate.getFullYear()} has passed
+  `;
+  progressBar.style.width = progressPercentage + '%';
 
-  // Append the snowflake to the snowflakes container
-  document.getElementById('snowflakes').appendChild(snowflake);
+  // Update the extra information below the progress bar
+  extraInfo.innerHTML = `
+      Current date: ${formatDate(currentDate)}<br>
+      Days passed: ${Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24))}<br>
+      Current time: <span id="current-time"></span>
+  `;
+  // Check if it's New Year and display a special message
+if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
+  extraInfo.innerHTML += '<br><strong class="new-year-message">Happy New Year!</strong>';
+}
 }
 
-// Create multiple snowflakes
-for (let i = 0; i < 30; i++) {
-  createSnowflake();
+function updateCurrentTime() {
+  var currentTimeElement = document.getElementById('current-time');
+  currentTimeElement.textContent = formatTime(new Date());
 }
-// Function to update the timezone based on user selection
-function updateTimezone() {
-    const timezoneSelect = document.getElementById('timezone');
-    const selectedTimezone = timezoneSelect.value;
-  
-    // Update the timezone in the additional info section
-    const timezoneInfo = document.getElementById('timezone-info');
-    timezoneInfo.textContent = `Your timezone: ${selectedTimezone}`;
-  
-    // You can also update other time-related information here if needed
-  }
 
+function formatDate(date) {
+  var options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+}
+
+function formatTime(date) {
+  var options = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+  return date.toLocaleTimeString('en-US', options);
+}
+window.addEventListener("resize", resizeCanvas, false);
+window.addEventListener("DOMContentLoaded", onLoad, false);
+
+window.requestAnimationFrame =
+    window.requestAnimationFrame       ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame    ||
+    window.oRequestAnimationFrame      ||
+    window.msRequestAnimationFrame     ||
+    function (callback) {
+        window.setTimeout(callback, 1000/60);
+    };
+
+var fireworksCanvas, fireworksCtx, w, h, particles = [], probability = 0.04,
+    xPoint, yPoint;
+
+function onLoad() {
+    fireworksCanvas = document.getElementById("fireworks-canvas");
+    fireworksCtx = fireworksCanvas.getContext("2d");
+    resizeCanvas();
+
+    window.requestAnimationFrame(updateWorld);
+}
+
+function resizeCanvas() {
+    if (!!fireworksCanvas) {
+        w = fireworksCanvas.width = window.innerWidth;
+        h = fireworksCanvas.height = window.innerHeight;
+    }
+}
+
+function updateWorld() {
+    update();
+    paint();
+    window.requestAnimationFrame(updateWorld);
+}
+
+function update() {
+    if (particles.length < 500 && Math.random() < probability) {
+        createFirework();
+    }
+    var alive = [];
+    for (var i=0; i<particles.length; i++) {
+        if (particles[i].move()) {
+            alive.push(particles[i]);
+        }
+    }
+    particles = alive;
+}
+
+function paint() {
+    fireworksCtx.globalCompositeOperation = 'source-over';
+    fireworksCtx.fillStyle = "rgba(0,0,0,0.2)";
+    fireworksCtx.fillRect(0, 0, w, h);
+    fireworksCtx.globalCompositeOperation = 'lighter';
+    for (var i=0; i<particles.length; i++) {
+        particles[i].draw(fireworksCtx);
+    }
+}
+
+function createFirework() {
+    xPoint = Math.random()*(w-200)+100;
+    yPoint = Math.random()*(h-200)+100;
+    var nFire = Math.random()*50+100;
+    var c = "rgb("+(~~(Math.random()*200+55))+","
+         +(~~(Math.random()*200+55))+","+(~~(Math.random()*200+55))+")";
+    for (var i=0; i<nFire; i++) {
+        var particle = new Particle();
+        particle.color = c;
+        var vy = Math.sqrt(25-particle.vx*particle.vx);
+        if (Math.abs(particle.vy) > vy) {
+            particle.vy = particle.vy>0 ? vy: -vy;
+        }
+        particles.push(particle);
+    }
+}
+
+function Particle() {
+    this.w = this.h = Math.random()*4+1;
+
+    this.x = xPoint-this.w/2;
+    this.y = yPoint-this.h/2;
+
+    this.vx = (Math.random()-0.5)*10;
+    this.vy = (Math.random()-0.5)*10;
+
+    this.alpha = Math.random()*.5+.5;
+
+    this.color;
+}
+
+Particle.prototype = {
+    gravity: 0.05,
+    move: function () {
+        this.x += this.vx;
+        this.vy += this.gravity;
+        this.y += this.vy;
+        this.alpha -= 0.01;
+        if (this.x <= -this.w || this.x >= screen.width ||
+            this.y >= screen.height ||
+            this.alpha <= 0) {
+                return false;
+        }
+        return true;
+    },
+    draw: function (c) {
+        c.save();
+        c.beginPath();
+
+        c.translate(this.x+this.w/2, this.y+this.h/2);
+        c.arc(0, 0, this.w, 0, Math.PI*2);
+        c.fillStyle = this.color;
+        c.globalAlpha = this.alpha;
+
+        c.closePath();
+        c.fill();
+        c.restore();
+    }
+};

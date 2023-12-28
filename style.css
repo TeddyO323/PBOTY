@@ -1,149 +1,72 @@
 body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* Set the body height to full viewport height */
-  }
-  
-  #progress-title {
-    text-align: left;
-    margin-top: 10px;
-    width: 100%; /* Set the width to match the progress bar container */
-    margin: 0 auto; /* Center the additional info within the container */
-    font-size: 150%;
-  }
-  #progress-bar-container {
-    z-index: 0;
-    width: 100%;
-    height: 48px;
-    background: #343434;
-    box-shadow: 1px 1px 10px #00000077;
-    margin-top: 7%;
-  }
-  
-  #progress-bar {
-    background-color: #c505ab; /* Default progress color */
-    border-color: white; /* Default background color */
-    height: 100%;
-    border-radius: 0px;
-    width: 334%;
-    transition: width 1s ease-in-out; /* Add transition for width property */
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Set the body height to full viewport height */
+  background-color: #f8f8f8; /* Lighter background color */
+  overflow:hidden;
+  margin:0;
 
 }
 
-  
-  #additional-info {
-    text-align: left;
-    margin-top: 10px;
-    width: 100%; /* Set the width to match the progress bar container */
-    margin: 0 auto; /* Center the additional info within the container */
-    padding-top: 10%;
-
-  }
-  
-  #additional-info p {
-    margin: 20px 0;
-  }
-  
-  footer {
-    background-color: #c505ab;
-    color: white;
-    padding: 5px 0;
-    text-align: left;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.progress-message {
+  text-align: left;
+  margin-top: 10px;
+  width: 100%; /* Set the width to match the progress bar container */
+  margin: 0 auto; /* Center the additional info within the container */
+  font-size: 150%;
+  color: #f8f8f8;
 }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px; 
+.progress-container {
+  z-index: 0;
+  width: 100%;
+  height: 48px;
+  background: #343434;
+  box-shadow: 1px 1px 10px #00000077;
+  margin-top: 7%;
 }
 
-.social-links a {
-    color: white;
-    text-decoration: none;
-    margin-right: 10px;
-    font-size: 15px;
+.progress-bar {
+  background: linear-gradient(to right, #c505ab, #740064);
+  border-color: white; /* Default background color */
+  height: 100%;
+  border-radius: 0px;
+  width: 334%;
+  transition: width 1s ease-in-out; /* Add transition for width property */
+
 }
 
-.made-by {
-    font-size: 14px;
-    margin-top: 10px;
-    text-align: right;
+.extra-info {
+  text-align: left;
+  margin-top: 10px;
+  width: 100%; /* Set the width to match the progress bar container */
+  margin: 0 auto; /* Center the additional info within the container */
+  padding-top: 10%;
+  color: #f8f8f8;
+
+
+}
+#extra-info p {
+  margin: 20px 0;
 }
 
-#color-form {
-    margin-bottom: 20px;
-  }
-
-button {
-    padding: 10px 15px;
-    background-color: #c505ab;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 2%;
-  }
-  
-button:hover {
-    background-color: #700762;
-  }
-
-#snowflakes {
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-  }
-  /* #santa {
+  /* Add a z-index to ensure the fireworks are behind the progress bar */
+  #fireworks-canvas {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50px; 
-    height: 50px;
-    background-image: url('download.png'); 
-    background-size: cover;
-    animation: moveSanta 30s linear infinite;
+    z-index: -1; /* Behind the progress bar */
   }
-  @keyframes moveSanta {
-    from {
-      left: 0;
-    }
-    to {
-      left: 100%;
-    }
-  } */
-  
-  
-  .snowflake {
-    position: absolute;
-    font-size: 15px;
-    color: #0044ff;
-    user-select: none;
-  }
-  
-  @keyframes fall {
-    from {
-      transform: translateY(-10vh);
-    }
-    to {
-      transform: translateY(110vh);
-    }
-  }
+    /* Style the New Year message */
+    .new-year-message {
+      color: #ff4081; /* Pink color */
+      font-size: 18px;
+      margin-top: 10px;
+      text-align: center; /* Center the text */
 
-#preferences-form {
-    margin-bottom: 20px;
-  }
-    
-
+    }
