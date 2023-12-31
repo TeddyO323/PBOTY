@@ -42,7 +42,7 @@ body {
 }
 
 .extra-info {
-  text-align: left;
+  text-align: center;
   margin-top: 10px;
   width: 100%; /* Set the width to match the progress bar container */
   margin: 0 auto; /* Center the additional info within the container */
@@ -64,25 +64,39 @@ body {
   }
     /* Style the New Year message */
     .new-year-message {
-      color: #ff4081; /* Pink color */
       font-size: 18px;
       margin-top: 10px;
       text-align: center; /* Center the text */
       line-height: 1.2; /* Adjust line height for spacing */
-      animation: glow 2s infinite alternate; /* CSS animation for the glow effect */
+      padding: 10px; /* Add padding for better visual effect */
+      background-color: #009688; /* Initial background color */
+      color: white; /* Text color */
+      animation: glowBackground 2s infinite alternate; /* CSS animation for background glow */
+    }
+    .new-year-message .year {
+      color: #740064; /* Change the color of the year (you can use any color code) */
     }
   
-    .new-year-message .year {
-      color: #009688; /* Change the color of the year (you can use any color code) */
-    }
-    @keyframes glow {
+    @keyframes glowBackground {
       from {
-        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+        box-shadow: 0 0 10px rgba(0, 150, 136, 0.8), 0 0 20px rgba(0, 150, 136, 0.6), 0 0 30px rgba(0, 150, 136, 0.4);
+        background-color: #009688; /* Initial background color */
       }
       to {
-        text-shadow: 0 0 20px #ff4081, 0 0 30px #ff4081, 0 0 40px #ff4081;
+        box-shadow: 0 0 20px rgba(0, 150, 136, 0.8), 0 0 30px rgba(0, 150, 136, 0.6), 0 0 40px rgba(0, 150, 136, 0.4);
+        background-color: #00bcd4; /* Background color during glow */
       }
     }
+    .toast-glass {
+      width: 50px;
+      height: 100px;
+      background: url('glass-image.png') no-repeat center center;
+      background-size: cover;
+      position: absolute;
+      top: -100px; /* Initial position off-screen */
+      transition: top 0.5s ease; /* Add a transition for smooth movement */
+    }
+    
     /* .new-year-message {
       font-size: 18px;
       margin-top: 10px;

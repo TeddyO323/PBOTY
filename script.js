@@ -212,3 +212,29 @@ Particle.prototype = {
         c.restore();
     }
 };
+
+// // JavaScript to handle the toast animation
+// function performToastAnimation() {
+//     var glass1 = document.getElementById('glass1');
+//     var glass2 = document.getElementById('glass2');
+  
+//     // Move glasses to a visible position
+//     glass1.style.top = '50px';
+//     glass2.style.top = '50px';
+  
+//     // Set a timeout to reset the position after the animation completes
+//     setTimeout(function () {
+//       resetToastAnimation();
+//     }, 2000); // Adjust the timeout duration as needed
+//   }
+  
+//   // Function to reset the glasses to their initial position
+//   function resetToastAnimation() {
+//     var glass1 = document.getElementById('glass1');
+//     var glass2 = document.getElementById('glass2');
+  
+//     // Move glasses back to their initial position
+//     glass1.style.top = '-100px';
+//     glass2.style.top = '-100px';
+//   }
+  
