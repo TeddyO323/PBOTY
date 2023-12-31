@@ -9,38 +9,75 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function updateProgressBar() {
-  var currentDate = new Date();
-
-  // Set the start date to the beginning of the current year
-  var startDate = new Date(currentDate.getFullYear(), 0, 1);
-
-  // Set the end date to the end of 2023
-  var endDate = new Date(2023, 11, 31, 23, 59, 59);
-
-  // Calculate the percentage of the year that has passed
-  var progressPercentage = Math.floor(((currentDate - startDate) / (endDate - startDate)) * 100);
-
-  // Update the progress message and progress bar width
-  var progressMessage = document.getElementById('progress-message');
-  var progressBar = document.getElementById('progress-bar');
-  var extraInfo = document.getElementById('extra-info');
-
-  progressMessage.innerHTML = `
-      ${progressPercentage}% of ${currentDate.getFullYear()} has passed
-  `;
-  progressBar.style.width = progressPercentage + '%';
-
-  // Update the extra information below the progress bar
-  extraInfo.innerHTML = `
-      Current date: ${formatDate(currentDate)}<br>
-      Days passed: ${Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24))}<br>
-      Current time: <span id="current-time"></span>
-  `;
-  // Check if it's New Year and display a special message
+    var currentDate = new Date();
+  
+    // Set the start date to the beginning of the current year
+    var startDate = new Date(currentDate.getFullYear(), 0, 1);
+  
+    // Set the end date to the end of 2023
+    var endDate = new Date(2023, 11, 31, 23, 59, 59);
+  
+    // Calculate the percentage of the year that has passed
+    var progressPercentage = Math.floor(((currentDate - startDate) / (endDate - startDate)) * 100);
+  
+    // Update the progress message and progress bar width
+    var progressMessage = document.getElementById('progress-message');
+    var progressBar = document.getElementById('progress-bar');
+    var extraInfo = document.getElementById('extra-info');
+    var newYearMessage = document.getElementById('new-year-message');
+  
+    progressMessage.innerHTML = `
+        ${progressPercentage}% of ${currentDate.getFullYear()} has passed
+    `;
+    progressBar.style.width = progressPercentage + '%';
+  
+    // Update the extra information below the progress bar
+    extraInfo.innerHTML = `
+    <br>
+    <strong id="new-year-message" class="new-year-message">
+      Happy New Year <span class="year">2024</span>!
+    </strong>
+    `;
+  
+    // Check if it's New Year and display a special message
+// Check if it's New Year and display a special message
 if (currentDate.getMonth() === 0 && currentDate.getDate() === 1) {
-  extraInfo.innerHTML += '<br><strong class="new-year-message">Happy New Year!</strong>';
-}
-}
+    extraInfo.innerHTML += `
+      <br>
+      <strong id="new-year-message" class="new-year-message">
+        Happy New Year <span class="year">2024</span>!
+      </strong>`;
+    animateNewYearMessage(newYearMessage);
+  } else {
+    stopAnimation();
+  }
+  
+  }
+    
+  // Function to animate the "Happy New Year!" message
+  function animateNewYearMessage(element) {
+    const message = "Happy New Year!";
+    let index = 0;
+  
+    function showNextLetter() {
+      element.innerHTML += message[index];
+      index++;
+  
+      if (index < message.length) {
+        setTimeout(showNextLetter, 200); // Adjust the delay between letters
+      }
+    }
+  
+    element.classList.add('new-year-message'); // Add the class for the glowing effect
+    showNextLetter();
+  }
+  
+  // Function to stop the animation
+  function stopAnimation() {
+    // Clear the animation or perform any cleanup if needed
+    // For simplicity, this example does not include specific cleanup
+  }
+  
 
 function updateCurrentTime() {
   var currentTimeElement = document.getElementById('current-time');

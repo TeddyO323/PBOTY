@@ -68,5 +68,57 @@ body {
       font-size: 18px;
       margin-top: 10px;
       text-align: center; /* Center the text */
-
+      line-height: 1.2; /* Adjust line height for spacing */
+      animation: glow 2s infinite alternate; /* CSS animation for the glow effect */
     }
+  
+    .new-year-message .year {
+      color: #009688; /* Change the color of the year (you can use any color code) */
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+      }
+      to {
+        text-shadow: 0 0 20px #ff4081, 0 0 30px #ff4081, 0 0 40px #ff4081;
+      }
+    }
+    /* .new-year-message {
+      font-size: 18px;
+      margin-top: 10px;
+      text-align: center; 
+      line-height: 1.2; 
+      animation: colorChange 1s infinite alternate; 
+    }
+  
+    .new-year-message .year {
+      color: #009688; 
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+      }
+      to {
+        text-shadow: 0 0 20px #ff4081, 0 0 30px #ff4081, 0 0 40px #ff4081;
+      }
+    }
+   */
+    /* @keyframes colorChange {
+      0%, 100% {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+        color: #009688;
+      }
+      25% {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+        color: #ff4081;
+      }
+      50% {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+        color: #00bcd4;
+      }
+      75% {
+        text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081, 0 0 30px #ff4081;
+        color: #4caf50; 
+      }
+    }
+   */
