@@ -11,9 +11,9 @@ This documentation provides an overview of the Year Progress Bar website, its fe
 - [Contributing](#contributing)
 - [License](#license)
 
-![progress-bar](progress_bar.jpg)
+![progress-bar](progresssss.jpg)
 
-### Click [Here](https://progress-bar-of-the-year.netlify.app/) to see the bar in action...
+### Click [Here](https://teddyo323.github.io/Progress-bar_of_the_year/) to see the bar in action...
 
 
 ## Introduction
